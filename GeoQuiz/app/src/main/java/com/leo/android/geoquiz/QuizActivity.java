@@ -24,6 +24,12 @@ public class QuizActivity extends AppCompatActivity {
             new Question(R.string.question_asia, true),
     };
 
+    private void updateQuestion() {
+        int question = mQuestionBank[mCurrentIndex].getTextResId(); // присваиваем id вопроса из массива Question переменной question
+        mQuestionTextView.setText(question); // вызываем метод setText класса TextView передавая в него id вопроса
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +37,6 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view); // присвоили переменной TextView id виджета Text view
-        int question = mQuestionBank[mCurrentIndex].getTextResId(); // присваиваем id вопроса из массива Question переменной question
-        mQuestionTextView.setText(question); // вызываем метод setText класса TextView передавая в него id вопроса
 
         mTrueButton = (Button) findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener(){
@@ -54,8 +58,7 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                int question = mQuestionBank[mCurrentIndex].getTextResId();
-                mQuestionTextView.setText(question);
+                updateQuestion();
 
             }
 
