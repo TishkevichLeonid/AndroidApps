@@ -92,7 +92,7 @@ public class QuizActivity extends AppCompatActivity {
         mPreviousButton = (Button) findViewById(R.id.previous_button);
         mPreviousButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                mCurrentIndex = (mCurrentIndex - 1) & mQuestionBank.length;
+                mCurrentIndex = (mCurrentIndex + (mQuestionBank.length - 1)) % mQuestionBank.length;
                 updateQuestion();
 
             }
