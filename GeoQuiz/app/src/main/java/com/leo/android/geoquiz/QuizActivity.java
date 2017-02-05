@@ -13,6 +13,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mPreviousButton;
     private TextView mQuestionTextView;
 
     private int mCurrentIndex = 0;
@@ -53,6 +54,14 @@ public class QuizActivity extends AppCompatActivity {
         int question = mQuestionBank[mCurrentIndex].getTextResId(); // присваиваем id вопроса из массива Question переменной question
         mQuestionTextView.setText(question); // вызываем метод setText класса TextView передавая в него id вопроса
 
+        mQuestionTextView.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updateQuestion();
+            }
+
+        });
+
 
         mTrueButton = (Button) findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener(){
@@ -74,6 +83,16 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updateQuestion();
+
+            }
+
+        });
+
+        mPreviousButton = (Button) findViewById(R.id.previous_button);
+        mPreviousButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                mCurrentIndex = (mCurrentIndex - 1) & mQuestionBank.length;
                 updateQuestion();
 
             }
