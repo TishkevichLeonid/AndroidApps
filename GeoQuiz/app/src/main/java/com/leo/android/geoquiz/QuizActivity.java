@@ -3,6 +3,7 @@ package com.leo.android.geoquiz;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
+    private static final String TAG = "QuizActivity";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -49,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
 
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view); // присвоили переменной TextView id виджета Text view
@@ -101,6 +104,36 @@ public class QuizActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart() called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop() called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
     }
 
     @Override
