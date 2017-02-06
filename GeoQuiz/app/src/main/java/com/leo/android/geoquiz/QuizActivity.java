@@ -86,7 +86,7 @@ public class QuizActivity extends AppCompatActivity {
         mNextButton = (ImageButton) findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+               // mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
 
             }
