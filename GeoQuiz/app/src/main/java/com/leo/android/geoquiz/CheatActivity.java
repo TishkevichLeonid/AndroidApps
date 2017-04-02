@@ -12,7 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
-    private static final String EXTRA_ANSWER_IS_TRUE = "com.leo.android.geoquiz.answer_is_true";
+    public static final String EXTRA_ANSWER_IS_TRUE = "com.leo.android.geoquiz.answer_is_true";
+    public static final String EXTRA_ANSWER_SHOWN = "com.leo.android.geoquiz.answer_shown";
 
     private boolean mAnswerTrue;
     private TextView mAnswerTextView;
@@ -42,19 +43,20 @@ public class CheatActivity extends AppCompatActivity {
                 else {
                     mAnswerTextView.setText(R.string.false_button);
                 }
+                setAnswerShowResult(true);
             }
         });
-       /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
+    }
+
+    private void setAnswerShowResult(boolean isAnswerShown){
+        Intent data = new Intent();
+        data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
+        setResult(RESULT_OK, data);
+    }
+
+    public static boolean wasAnswerShown(Intent result){
+        return result.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
     }
 
 }
