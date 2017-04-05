@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class QuizActivity extends AppCompatActivity {
     private static final String TAG = "QuizActivity";
     private static final String KEY_INDEX = "index";
+    private static final String CHEAT_IS_WRONG = "cheating";
     private static final int REQUEST_CHEAT_CODE = 0;
 
     private Button mTrueButton;
@@ -126,7 +127,9 @@ public class QuizActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+            mIsCheater = savedInstanceState.getBoolean(CHEAT_IS_WRONG, false);
         }
+
         updateQuestion();
     }
 
@@ -148,6 +151,7 @@ public class QuizActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "onSaveInstanceState");
         savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+        savedInstanceState.putBoolean(CHEAT_IS_WRONG, mIsCheater);
     }
 
     @Override
